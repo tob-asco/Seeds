@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Pitch1_0.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Pitch1_0"
+    xmlns:views="clr-namespace:Pitch1_0.Views"
+    FlyoutHeaderBehavior="CollapseOnScroll"
+    Shell.FlyoutBehavior="Flyout">
+
+    <!--<ShellContent
+        Title="Welcome"
+        ContentTemplate="{DataTemplate views:WelcomePage}"
+        Route="WelcomePage" />--><!--The Route property defines the URI of this page -->
+    <!--<ShellContent Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />--><!--The Route property defines the URI of this page -->
+    <FlyoutItem Title="Login">
+        <ShellContent ContentTemplate="{DataTemplate views:WelcomePage}"
+                      Route="WelcomePage"/>
+        
+    </FlyoutItem>
+    
+</Shell>

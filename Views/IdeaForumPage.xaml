@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Pitch1_0.ViewModel"
+             xmlns:converter="clr-namespace:Pitch1_0.Converters"
+             x:Class="Pitch1_0.Views.IdeaForumPage"
+             Title="{Binding ParentFeedEntry.Idea.Title,StringFormat='{}{0} - forum'}">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BackCommand}" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="frameStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="10" />
+            </Style>
+            <Style x:Key="threadFrameStyle" TargetType="Frame" BasedOn="{x:StaticResource frameStyle}">
+                <Setter Property="Margin" Value="0,5,0,5" />
+                <Setter Property="BackgroundColor" Value="#171717" />
+            </Style>
+            <Style x:Key="commentFrameStyle" TargetType="Frame" BasedOn="{x:StaticResource frameStyle}">
+                <Setter Property="Margin" Value="0,0,0,5" />
+                <Setter Property="BackgroundColor" Value="#333" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="labelAuthorCommentStyle" TargetType="Label" BasedOn="{x:StaticResource labelAuthorStyle}">
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+            <Style x:Key="labelCommentTextStyle" TargetType="Label">
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="HeightRequest" Value="200" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+            <Style x:Key="entryThreadStyle" TargetType="Editor">
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="FontAttributes" Value="Italic" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="MaxLength" Value="80" />
+                <Setter Property="AutoSize" Value="TextChanges" />
+                <Setter Property="WidthRequest" Value="300" />
+            </Style>
+            <Style x:Key="pickerTypeStyle" TargetType="Picker">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="MaximumWidthRequest" Value="90" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            <Style x:Key="buttonPostStyle" TargetType="Button" >
+                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="Padding" Value="20,3,20,3" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <!--<VerticalStackLayout>-->
+    <Grid RowDefinitions="*,Auto">
+        <Frame Grid.Row="1" Style="{StaticResource threadFrameStyle}" Padding="0">
+            <!--<FlexLayout Wrap="NoWrap" JustifyContent="SpaceBetween" HeightRequest="45" Margin="20,0,0,0">-->
+            <HorizontalStackLayout Spacing="5" Padding="0">
+                <Editor x:Name="threadEditor"
+                        Placeholder="Add a thread"
+                        Text="{Binding PostThreadText}"
+                        Style="{StaticResource entryThreadStyle}" />
+                <Picker x:Name="threadTypePicker"
+                        Style="{StaticResource pickerTypeStyle}"
+                        SelectedIndex="{Binding ThreadType, Converter={converter:ThreadTypeConverter}}"
+                        IsVisible="{Binding Source={x:Reference threadEditor}, Path=Text, Converter={converter:TextEmptyConverter
+                                        TextIsEmpty=False,TextIsNotEmpty=True}}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>none</x:String>
+                            <x:String>? - question, doubt, possible flaw</x:String>
+                            <x:String>! - improvement, extra feature</x:String>
+                            <x:String>+1 - positive aspect(s)</x:String>
+                            <x:String>-1 - negative aspect(s)</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Button Text="Post"
+                        Style="{StaticResource buttonPostStyle}"
+                        IsVisible="{Binding Source={x:Reference threadEditor}, Path=Text, Converter={converter:TextEmptyConverter
+                                        TextIsEmpty=False,TextIsNotEmpty=True}}"
+                        Command="{Binding PostThreadCommand}" >
+                    <!--<Button.CommandParameter>
+                        <MultiBinding Converter="{converter:ThreadPostConverter}">
+                            <Binding Source="{x:Reference threadEditor}" Path="Text" />
+                            <Binding Source="{x:Reference threadTypePicker}" Path="SelectedItem"/>
+                        </MultiBinding>
+                    </Button.CommandParameter>-->
+                </Button>
+            </HorizontalStackLayout>
+            <!--</FlexLayout>-->
+        </Frame>
+        <CollectionView Grid.Row="0" ItemsSource="{Binding ParentFeedEntry.Idea.Forum}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Style="{StaticResource threadFrameStyle}" >
+                        <VerticalStackLayout>
+                            <FlexLayout Wrap="NoWrap" JustifyContent="SpaceBetween" HeightRequest="100" Margin="20,0,0,0">
+                                <VerticalStackLayout>
+                                    <Button Text="/\"
+                                            Style="{Binding ViewerVote, Converter={converter:CategoryConverter 
+                            MediumPriority={StaticResource buttonMediumStyle}, 
+                            MaximumPriority={StaticResource buttonMaximumStyle},
+                            MinimumPriority={StaticResource buttonMinimumStyle}}}"
+                                            HeightRequest="25" WidthRequest="25" CornerRadius="13"
+                                            Command="{Binding UpvoteCommand}" />
+                                    <Label Text="{Binding Upvotes}"
+                                           HorizontalOptions="Center"/>
+                                    <Button Text="\/"
+                                            Style="{Binding ViewerVote, Converter={converter:CategoryConverter 
+                            MediumPriority={StaticResource buttonMediumStyle}, 
+                            MinimumPriority={StaticResource buttonMaximumStyle},
+                            MaximumPriority={StaticResource buttonMinimumStyle}}}"
+                                            HeightRequest="25" WidthRequest="25" CornerRadius="13" 
+                                            Command="{Binding DownvoteCommand}" />
+                                </VerticalStackLayout>
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Text, StringFormat='{}&quot;{0}&quot;'}"
+                                   Style="{StaticResource threadTitleStyle}" />
+                                    <HorizontalStackLayout HorizontalOptions="End">
+                                        <Label Text="{Binding AuthorName, StringFormat='{}- {0}  •'}"
+                                          Style="{StaticResource labelAuthorThreadStyle}" />
+                                        <Label Text="{Binding TimeCreated, StringFormat='{}  {0: HH:mm}'}"
+                                               Style="{StaticResource labelAuthorThreadStyle}"/>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                                <Frame Style="{StaticResource frameTypeStyle}">
+                                    <Label Text="{Binding Type}" 
+                                           Style="{StaticResource labelTypeStyle}"/>
+                                </Frame>
+                            </FlexLayout>
+                            <CollectionView ItemsSource="{Binding Comments}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <FlexLayout Wrap="NoWrap" JustifyContent="Start" 
+                                                MinimumHeightRequest="100" Margin="0,0,0,0">
+                                            <VerticalStackLayout HorizontalOptions="Start" WidthRequest="30">
+                                                <Button Text="/\" 
+                                                     Style="{Binding ViewerVote, Converter={converter:CategoryConverter 
+                            MediumPriority={StaticResource buttonMediumStyle}, 
+                            MaximumPriority={StaticResource buttonMaximumStyle},
+                            MinimumPriority={StaticResource buttonMinimumStyle}}}"
+                                            HeightRequest="25" WidthRequest="25" CornerRadius="13"
+                                                    Command="{Binding UpvoteCommand}" />
+                                                <Label Text="{Binding Upvotes}"
+                                                   HorizontalOptions="Center"/>
+                                                <Button Text="\/" 
+                                                    Style="{Binding ViewerVote, Converter={converter:CategoryConverter 
+                            MediumPriority={StaticResource buttonMediumStyle}, 
+                            MinimumPriority={StaticResource buttonMaximumStyle},
+                            MaximumPriority={StaticResource buttonMinimumStyle}}}"
+                                            HeightRequest="25" WidthRequest="25" CornerRadius="13" 
+                                                    Command="{Binding DownvoteCommand}" />
+                                            </VerticalStackLayout>
+                                            <Frame Style="{StaticResource commentFrameStyle}"
+                                               WidthRequest="380" Margin="5,0,0,0">
+                                                <VerticalStackLayout >
+                                                    <HorizontalStackLayout>
+                                                        <Label Text="{Binding AuthorName, StringFormat='{}{0}  •'}"
+                                                           Style="{StaticResource labelAuthorCommentStyle}" />
+                                                        <Label Text="{Binding TimeCreated, StringFormat='{}  {0:HH:mm}'}"
+                                                           Style="{StaticResource labelAuthorCommentStyle}"/>
+                                                    </HorizontalStackLayout>
+                                                    <Label Text="{Binding Text}" Grid.Row="1"
+                                                       Style="{StaticResource labelCommentTextStyle}" />
+                                                </VerticalStackLayout>
+                                            </Frame>
+                                        </FlexLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                            <HorizontalStackLayout>
+                                <Frame Style="{StaticResource commentFrameStyle}" Padding="10,0,0,0"
+                                   WidthRequest="315" Margin="40,0,0,0">
+                                    <Editor x:Name="commentEditor"
+                                            Text="{Binding PostCommentText}"
+                                            AutoSize="TextChanges"
+                                        Placeholder="Add a comment" />
+                                </Frame>
+                                <Button Text="Post" 
+                                        Style="{StaticResource buttonPostStyle}"
+                                        IsVisible="{Binding Source={x:Reference commentEditor}, Path=Text, 
+                                    Converter={converter:TextEmptyConverter TextIsEmpty=False, TextIsNotEmpty=True}}" 
+                                        Command="{Binding Source={RelativeSource AncestorType={Type local:IdeaForumViewModel}}, Path=PostCommentCommand}"
+                                        CommandParameter="{Binding .}" />
+                                <!--<Button.CommandParameter>
+                                        <MultiBinding Converter="{converter:ThreadPostConverter}">
+                                            <Binding Source="{x:Reference commentEditor}" Path="Text" /> -->
+                                            <!-- the following line may be wrong! I want to bind the whole thread -->
+                                            <!--<Binding Source="{Binding Source={RelativeSource TemplatedParent}}" Path="Thread" />-->
+                                            <!-- alternatively try the . operator. Might do the same -->
+                                            <!--<Binding Path="/" />-->
+                                            <!-- but I'm not sure how the syntax goes in this <Binding.. context -->
+                                        <!--</MultiBinding>
+                                    </Button.CommandParameter>-->
+                                <!--</Button>-->
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

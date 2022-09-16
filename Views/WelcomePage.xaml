@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Pitch1_0.ViewModel"
+             x:Class="Pitch1_0.Views.WelcomePage"
+             x:DataType="local:WelcomeViewModel"
+             Title="Welcome Page">
+    <VerticalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <Label Margin="20" FontSize="30"
+            Text="pitchit - Present, Rate, Develop"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button Text="Open your feed!" FontSize="20" Margin="40"
+                Command="{Binding GetIdeasAndCategoriesAndBuildFeedAndNavigateCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

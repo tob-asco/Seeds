@@ -1,0 +1,179 @@
+[
+  {
+    "Index": 1,
+    "Inventor": "pitch'sOP",
+    "CategoryKey": "CPU",
+    "Title": "pitchit",
+    "Slogan": "Present, Rate and Develop Your Ideas",
+    "Eyecatchers": [
+      { "Source": "https://img.freepik.com/vektoren-kostenlos/illustration-des-gluehbirnensymbols_53876-43730.jpg?w=826&t=st=1660598094~exp=1660598694~hmac=0f378b1fcfc2ac6e0b1cfe701c3f64b8113904ad616c627f4b5ba70f6ef5d386" },
+      { "Source": "https://img.freepik.com/vektoren-premium/cloud-speichersymbol-fuer-datenupload-mobile-web-app_8071-7453.jpg" },
+      { "Source": "https://img.freepik.com/vektoren-premium/likes-und-abneigungen-symbole-social-media-icons_16734-149.jpg?w=826" }
+    ],
+    "Upvotes": 0,
+    "UpvotesExp": 3,
+    "Forum": [
+  {
+    "Index": 0,
+    "AuthorName": "hmmBoy592",
+    "Text": "Title, Slogan and 3 Pictures Are NOT Enough",
+    "Upvotes": 23,
+    "Type": "?",
+    "Comments": [
+      {
+        "ParentThread.Index": 0,
+        "IsAnswer": "0",
+        "AuthorName": "criticalUser",
+        "Text": "+1. Just assume an author wants to share a book and he's offered only 3 slides.'",
+        "Upvotes": 2
+      },
+      {
+        "ParentThread.Index": 0,
+        "IsAnswer": "1",
+        "AuthorName": "OP",
+        "Text": "The restricted information you mention applies only to the main feed page! Clicking on an idea opens the detail page.",
+        "Upvotes": 39
+      },
+      {
+        "ParentThread.Index": 0,
+        "IsAnswer": "0",
+        "AuthorName": "hmmBoy592",
+        "Text": "Ahh! I see, to keep the feed somewhat juicy and standardize enough. Nice!",
+        "Upvotes": 3
+      }
+    ]
+  },
+  {
+    "Index": 1,
+    "AuthorName": "pitch'sOP",
+    "Text": "Open To Feedback!",
+    "Upvotes": 0,
+    "Type": "",
+    "Comments": [
+      {
+        "ParentThread.Index": 1,
+        "IsAnswer": "0",
+        "AuthorName": "criticalUser",
+        "Text": "Your designing needs polishing imo..\n5 more lines\n4 more lines\n3 more lines\n2 more lines\n1 more line\nlast line!",
+        "Upvotes": 0
+      },
+      {
+        "ParentThread.Index": 1,
+        "IsAnswer": "0",
+        "AuthorName": "niceDude",
+        "Text": "Haha, be honest, all you want is GOOD feedback. And this is what you deserve!",
+        "Upvotes": 1
+      }
+    ]
+  },
+      {
+        "Index": 2,
+        "AuthorName": "ACuriousMind",
+        "Text": "Fork Ideas as in GitHub",
+        "Upvotes": 187,
+        "Type": "!",
+        "Comments": [
+          {
+            "ParentThread.Index": 2,
+            "IsAnswer": "0",
+            "AuthorName": "ACuriousMind",
+            "Text": "To clarify, it would be cool, for rather complex improvements, to upload a seperate idea that inherits the parent idea and adds to it.",
+            "Upvotes": 139
+          },
+          {
+            "ParentThread.Index": 2,
+            "IsAnswer": "0",
+            "AuthorName": "OP",
+            "Text": "Interesting! This fits into my philosphy wanting to encourage partnerships. Thank you :)",
+            "Upvotes": 1
+          }
+        ]
+      }
+]
+  },
+  {
+    "Index": 2,
+    "Inventor": "DanielDüsentrieb",
+    "CategoryKey": "GAD",
+    "Title": "LastWipe",
+    "Slogan": "Say Goodbye to Wiping Pain (for men)",
+    "Eyecatchers": [
+      { "Source": "https://img.freepik.com/vektoren-premium/buntes-design-des-weissen-papiers-der-geweberolle-auf-blauer-hintergrundvektorillustration_383392-503.jpg?w=740" },
+      { "Source": "https://img.freepik.com/vektoren-kostenlos/weisse-creme-abstriche-swatch-set-kosmetikprodukt_33099-2269.jpg?w=1380&t=st=1660598332~exp=1660598932~hmac=6a911169934d3437e3aef4cffe72dcf90c81da645721091f104132caf3404863" },
+      { "Source": "https://img.freepik.com/vektoren-premium/butt-plastische-chirurgie-neon-symbol-elemente-des-plastischen-chirurgie-sets-einfaches-symbol-fuer-websites-webdesign-mobile-app-infografiken-isoliert-auf-ziegelwand_549897-829.jpg" }
+    ],
+    "Upvotes": 0,
+    "UpvotesExp": 0,
+    "Forum": []
+  },
+  {
+    "Index": 0,
+    "Inventor": "gretchen",
+    "CategoryKey": "ENV",
+    "Title": "w/orld method",
+    "Slogan": "Use Our Consumption to Drastically Reduce Industry's Oil Demand",
+    "Eyecatchers": [
+      { "Source": "https://iea.imgix.net/f5288c75-8dfe-490a-b56d-0a013f7d765e/shutterstock_1790888999-ext.jpg?auto=compress%2Cformat&fit=min&q=80&rect=4733%2C2477%2C3779%2C2523&w=680&fit=crop&fm=jpg&q=70&auto=format&h=454" },
+      { "Source": "https://cdn.cdp.net/cdp-production/comfy/cms/files/files/000/005/264/original/temp-largeClimate-200.png" }
+    ],
+    "Upvotes": 0,
+    "UpvotesExp": 9,
+    "Forum": []
+  },
+  {
+    "CategoryKey": "ITE",
+    "Eyecatchers": [
+      { "Source": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Kompressorkuehlschrank.svg/521px-Kompressorkuehlschrank.svg.png" },
+      { "Source": "https://www.heizsparer.de/wp-content/uploads/images/waermepumpe-funktion-heizen-kuehlen-grafik-gb.jpg" },
+      { "Source": "https://st3.depositphotos.com/32466374/37449/v/950/depositphotos_374490758-stock-illustration-thermometer-icons-hot-cold-temperature.jpg?forcejpeg=true" }
+    ],
+    "Index": 3,
+    "Slogan": "Abwärme des Kühlschranks zur Wassererwärmung nutzen statt verschwenden",
+    "Title": "Wasserwärmkühlschrank",
+    "Upvotes": 0,
+    "UpvotesExp": 0,
+    "Inventor": "DerDad",
+    "Forum": []
+  },
+  {
+    "Index": 4,
+    "Inventor": "DerDad",
+    "CategoryKey": "ITE",
+    "Title": "Fahrban Eiswarner",
+    "Slogan": "Infrarotsensor im Außenspiegel prüft Fahrbantemperatur auf Glatteisgefahr",
+    "Eyecatchers": [
+      { "Source": "https://scx2.b-cdn.net/gfx/news/hires/infraredcame.jpg" },
+      { "Source": "https://www.calex.co.uk/site/wp-content/uploads/2018/08/Using-Handheld-IR-Thermometers-768x413.jpg" },
+      { "Source": "https://www.polestar.com/dato-assets/11286/1629380956-polestar-210301-5267v01.jpg?q=60&dpr=1&fm=pjpg&w=1056"}
+    ],
+    "Upvotes": 0,
+    "UpvotesExp": 0,
+    "Forum": []
+  },
+  {
+    "Index": 5,
+    "Inventor": "DerDad",
+    "CategoryKey": "GAD",
+    "Title": "Solarblocker",
+    "Slogan": "Sonnenstrahlen im Sommer und Wärmedämmung im Winter durch mobile Dämmplatte am Fenster abschatten",
+    "Eyecatchers": [
+      { "Source": "https://www.energie-experten.org/fileadmin/System-Bilder/Inhalt_Bilder/Inhalt_Bilder_04/Fenster_Rollladen_Daemmwerte_Grafik_Hessisches_Ministerium_fuer_Umwelt_Energie_Landwirtschaft_und_Verbraucherschutz.jpg" }
+    ],
+    "Upvotes": 0,
+    "UpvotesExp": 0,
+    "Forum": []
+  },
+  {
+    "CategoryKey": "GAD",
+    "Eyecatchers": [
+      { "Source": "https://m.media-amazon.com/images/I/41vUseghMpL._SL500_.jpg" }
+    ],
+    "Index": 6,
+    "Slogan": "Kaltwasser für WC und Dusche durch Wärmepumpe aufwärmen und die Wohnung kühlen",
+    "Title": "Kaltwasserraumkühler",
+    "Upvotes": 0,
+    "UpvotesExp": 0,
+    "Inventor": "DerDad",
+    "Forum": []
+  }
+]

@@ -1,0 +1,9 @@
+{
+    "Name": "ttoobbii",
+    "CategoryPrioritiesList": [
+      { "Key": "ENV", "Priority": 0 },
+      { "Key": "GAD", "Priority": 0 },
+      { "Key": "ITE", "Priority": 0 },
+      { "Key": "CPU", "Priority": 0}
+    ]
+}

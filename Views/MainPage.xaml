@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:Pitch1_0.ViewModel"
+             xmlns:converter="clr-namespace:Pitch1_0.Converters"
+             x:Class="Pitch1_0.MainPage"
+             Title="{Binding CurrentUser.Name}">
+    <!--x:Class=... this file is a standalone class called "MainPage" in the ns "Pitch1_0"-->
+    <!--x:DataType is only for IntelliSense; Binding Context is registered in "...xaml.cs"-->
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="inventorStyle" TargetType="Label">
+                <Setter Property="MaxLines" Value="1"/>
+                <Setter Property="LineBreakMode" Value="TailTruncation"/>
+                <Setter Property="TextColor" Value="#888"/>
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="title" TargetType="Label">
+                <Setter Property="FontSize" Value="35"/>
+                <Setter Property="CharacterSpacing" Value="0.5"/>
+                <Setter Property="MaxLines" Value="1"/>
+                <Setter Property="LineBreakMode" Value="TailTruncation"/>
+                <Setter Property="TextColor" Value="#FFF"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style x:Key="slogan" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="MaxLines" Value="2"/>
+                <Setter Property="LineBreakMode" Value="WordWrap"/>
+                <Setter Property="TextColor" Value="#FFF"/>
+            </Style>
+            <Style x:Key="carouselStyle" TargetType="CarouselView">
+                <Setter Property="HeightRequest" Value="400" />
+                <Setter Property="WidthRequest" Value="400" />
+                <Setter Property="Loop" Value="False" />
+                <Setter Property="IsScrollAnimated" Value="True" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+            <Style x:Key="carouselImageStyle" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+            <Style x:Key="topThreadFrameStyle" TargetType="Frame">
+                <Setter Property="HeightRequest" Value="100"/>
+                <Setter Property="WidthRequest" Value="350"/>
+                <Setter Property="Padding" Value="5,10,0,0" />
+                <Setter Property="Margin" Value="0,10,0,0"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="BorderColor" Value="#BBB"/>
+                <Setter Property="HorizontalOptions" Value="End" />
+            </Style>
+            <Style x:Key="topThreadTitleStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="WidthRequest" Value="250" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="FontAttributes" Value="Italic" />
+            </Style>
+            <Style x:Key="labelVotesStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="commentButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="BorderColor" Value="#999" />
+                <Setter Property="Margin" Value="3,0,3,30" />
+                <Setter Property="Padding" Value="1,10,1,10" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <CollectionView ItemsSource="{Binding FeedEntries}" >
+        <CollectionView.ItemTemplate >
+            <DataTemplate >
+                <Grid ColumnDefinitions="*,50" RowDefinitions="50,Auto" Margin="0,15,0,0" BackgroundColor="#111">
+                    <!--Use Flex instead of HorizontalStack to put one on left, one on right-->
+                    <FlexLayout Grid.Row="0" Wrap="NoWrap" JustifyContent="SpaceBetween" Grid.ColumnSpan="2"
+                                HeightRequest="20" Padding="0" Margin="10,0,10,0" HorizontalOptions="EndAndExpand">
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding Idea.Inventor, StringFormat='{}{0}  •'}" 
+                               Style="{StaticResource inventorStyle}" />
+                            <Label Text="{Binding Idea.TimeCreation, StringFormat='{}  {0: dd.MM.yy   HH:mm}'}"
+                                   Style="{StaticResource inventorStyle}" />
+                        </HorizontalStackLayout>
+                        <Button Text="{Binding Category.Name}" 
+                                Command="{Binding Source={x:RelativeSource AncestorType={x:Type local:FeedViewModel}}, 
+                            Path=ChangeCategoryPriorityCommand}"
+                                CommandParameter="{Binding Index}"
+                                Padding="15,1,15,2" HeightRequest="25" CornerRadius="13"
+                                VerticalOptions="End"  HorizontalOptions="StartAndExpand" >
+                            <!--Style="{MultiBinding Bindings=, Source={RelativeSource AncestorType={Type local:FeedViewModel}},
+                            Path=CurrentUser.CategoryPrioritiesDict, 
+                            Converter={converter:CategoryConverter 
+                            MediumPriority={StaticResource buttonMediumStyle}, 
+                            MaximumPriority={StaticResource buttonMaximumStyle},
+                            MinimumPriority={StaticResource buttonMinimumStyle}},
+                            ConverterParameter='CPU'}" >-->
+                            <Button.Style>
+                                <MultiBinding Converter="{converter:DictAndCatToIntConverter 
+                                MediumPriority={StaticResource buttonMediumStyle}, 
+                                MaximumPriority={StaticResource buttonMaximumStyle},
+                                MinimumPriority={StaticResource buttonMinimumStyle}}" >
+                                    <Binding Source="{RelativeSource AncestorType={Type local:FeedViewModel}}"
+                                             Path="CurrentUser.CategoryPrioritiesDict" />
+                                    <Binding Path="Category.Key" />
+                                </MultiBinding>
+                            </Button.Style>
+                            <!--<Button.Style>
+                                <Binding Converter="{converter:CategoryConverter
+                                MediumPriority={StaticResource buttonMediumStyle}, 
+                                MaximumPriority={StaticResource buttonMaximumStyle},
+                                MinimumPriority={StaticResource buttonMinimumStyle}}"
+                                  FallbackValue="{StaticResource buttonMaximumStyle}">
+                                    <MultiBinding Converter="{converter:DictAndCatToIntConverter}"
+                                                  FallbackValue="-1">
+                                        <Binding Source="{RelativeSource AncestorType={Type local:FeedViewModel}}"
+                                                 Path="CurrentUser.CategoryPrioritiesDict" />
+                                        <Binding Path="Category.Key" />
+                                    </MultiBinding>
+                                </Binding>
+                            </Button.Style>-->
+                        </Button>
+                    </FlexLayout>
+                    <VerticalStackLayout Grid.Row="1" Grid.Column="0"
+                                         Padding="0,0,5,0">
+                        <Label Text="{Binding Idea.Title}"
+                               HorizontalOptions="CenterAndExpand"
+                               Style="{StaticResource title}" />
+                        <Label Text="{Binding Idea.Slogan}"
+                               Style="{StaticResource slogan}" 
+                               HorizontalOptions="CenterAndExpand" Padding="10"/>
+                        <CarouselView Style="{StaticResource carouselStyle}"
+                                   IndicatorView="indicatorView"
+                                   ItemsSource="{Binding Idea.Eyecatchers}">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Source}"
+                                           Style="{StaticResource carouselImageStyle}" />
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+                        <!--define the dots for the carousel-->
+                        <IndicatorView x:Name="indicatorView"
+                                       IndicatorColor="DarkGray"
+                                       SelectedIndicatorColor="#FFF"
+                                       IndicatorSize="5"
+                                       HorizontalOptions="Center"
+                                       Margin="0,10,0,0"/>
+                        <!--**************** top Thread ***************-->
+                        <Frame Style="{StaticResource topThreadFrameStyle}" 
+                               IsVisible="{Binding Idea.Forum.Count,
+                            Converter={converter:IntIsZeroConverter IntIsZero=False, IntIsNotZero=True}}">
+                            <FlexLayout Wrap="NoWrap" JustifyContent="SpaceBetween" 
+                                        BackgroundColor="Transparent" HeightRequest="100" VerticalOptions="Center">
+                                <VerticalStackLayout>
+                                    <Button Text="/\"
+                                            Style="{Binding Idea.Forum[0].ViewerVote, Converter={converter:CategoryConverter 
+                            MediumPriority={StaticResource buttonMediumStyle}, 
+                            MaximumPriority={StaticResource buttonMaximumStyle},
+                            MinimumPriority={StaticResource buttonMinimumStyle}}}"
+                                            HeightRequest="25" WidthRequest="25" CornerRadius="13"
+                                           IsVisible="{Binding Idea.Forum[0].Text,
+                            Converter={converter:TextEmptyConverter TextIsEmpty=False, TextIsNotEmpty=True}}"
+                                            Command="{Binding Idea.Forum[0].UpvoteCommand}" />
+                                    <Label Text="{Binding Idea.Forum[0].Upvotes}"
+                                           HorizontalOptions="Center"/>
+                                    <Button Text="\/"
+                                            Style="{Binding Idea.Forum[0].ViewerVote, Converter={converter:CategoryConverter 
+                            MediumPriority={StaticResource buttonMediumStyle}, 
+                            MinimumPriority={StaticResource buttonMaximumStyle},
+                            MaximumPriority={StaticResource buttonMinimumStyle}}}"
+                                            HeightRequest="25" WidthRequest="25" CornerRadius="13"
+                                            Command="{Binding Idea.Forum[0].DownvoteCommand}" />
+                                </VerticalStackLayout>
+                                <VerticalStackLayout>
+                                    <Button Text="{Binding Idea.Forum[0].Text, StringFormat='{}&quot;{0}&quot;'}"
+                                        Style="{StaticResource topThreadTitleStyle}" 
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:FeedViewModel}},Path=OpenForumCommand}" 
+                                        CommandParameter="{Binding .}" />
+                                    <!-- "Binding ." means the thing of the CollectionView itself -->
+                                    <HorizontalStackLayout HorizontalOptions="End">
+                                        <Label Text="{Binding Idea.Forum[0].AuthorName, StringFormat='{}- {0}  •'}"
+                                          Style="{StaticResource labelAuthorThreadStyle}" />
+                                        <Label Text="{Binding Idea.Forum[0].TimeCreated, StringFormat='{}  {0: HH:mm}'}"
+                                               Style="{StaticResource labelAuthorThreadStyle}"/>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                                <Frame Style="{StaticResource frameTypeStyle}" BorderColor="Transparent">
+                                    <Label Text="{Binding Idea.Forum[0].Type}" 
+                                           Style="{StaticResource labelTypeStyle}"/>
+                                </Frame>
+                            </FlexLayout>
+                        </Frame>
+                    </VerticalStackLayout>
+                    <!-- **************** Rightest Column (1) ****************** -->
+                    <FlexLayout Grid.Row="1" Grid.Column="1"
+                                    Direction="Column" 
+                                    JustifyContent="SpaceBetween">
+                        <!-- dummy rectangle to make manipulate FlexLayout -->
+                        <Rectangle HeightRequest="70"/>
+                        <VerticalStackLayout VerticalOptions="CenterAndExpand" Spacing="5" Padding="5">
+                            <Button Text="/\"
+                                Style="{Binding ViewerVote, Converter={converter:CategoryConverter 
+                            MediumPriority={StaticResource buttonMediumStyle}, 
+                            MaximumPriority={StaticResource buttonMaximumStyle},
+                            MinimumPriority={StaticResource buttonMinimumStyle}}}"
+                                FontSize="30" HeightRequest="40" WidthRequest="40" CornerRadius="20"
+                                Command="{Binding UpvoteCommand}" />
+                            <Label Text="{Binding Idea.Upvotes}"
+                               Style="{StaticResource labelVotesStyle}" />
+                            <Button Text="\/"
+                                Style="{Binding ViewerVote, Converter={converter:CategoryConverter 
+                            MediumPriority={StaticResource buttonMediumStyle}, 
+                            MinimumPriority={StaticResource buttonMaximumStyle},
+                            MaximumPriority={StaticResource buttonMinimumStyle}}}"
+                                FontSize="30" HeightRequest="40" WidthRequest="40" CornerRadius="20"
+                                Command="{Binding DownvoteCommand}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout VerticalOptions="Center">
+                            <Button Text="{Binding Idea.Forum.Count}" VerticalOptions="Center"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:FeedViewModel}},Path=OpenForumCommand}" 
+                                CommandParameter="{Binding .}"
+                                        Style="{StaticResource commentButtonStyle}" />
+                        </VerticalStackLayout>
+                    </FlexLayout>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

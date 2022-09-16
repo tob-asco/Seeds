@@ -1,0 +1,64 @@
+[
+  {
+    "Name": "ENV - environmental action",
+    "Key": "ENV",
+    "Tags": [
+      "CO2-reduction",
+      "deforestation",
+      "water security",
+      "fossil fuels",
+      "movement"
+    ]
+  },
+
+  {
+    "Name": "GAD - gadgets",
+    "Key": "GAD",
+    "Tags": [
+      "eletric",
+      "non-electric",
+      "household",
+      "accessoir",
+      "health",
+      "daily",
+      "saving",
+      "4 business",
+      "4 individuals"
+    ]
+  },
+  {
+    "Name": "CPU - software",
+    "Key": "CPU",
+    "Tags": [
+      "platform",
+      "phone",
+      "tablet",
+      "computer",
+      "server",
+      "multi-user",
+      "single-user",
+      "gaming",
+      "add-on",
+      "daily",
+      "4 business",
+      "4 individuals"
+    ]
+  },
+  {
+    "Name": "ITE - improve the existing",
+    "Key": "ITE",
+    "Tags": [
+      "music",
+      "video",
+      "cars",
+      "energy",
+      "software",
+      "construction",
+      "housing",
+      "gaming",
+      "sports",
+      "4 business",
+      "4 individuals"
+    ]
+  }
+]
