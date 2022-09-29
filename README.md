@@ -1,5 +1,5 @@
-## Seeds
-# Present, Rate, Develop
+# Seeds
+## Present, Rate, Develop
 
 A place to upload creative ideas of all kinds.
 
